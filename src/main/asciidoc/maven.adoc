@@ -20,7 +20,28 @@ Maven is een project-management en build tool.
 Met Maven maak je een build met
 
 Maven heeft diverse goals (zoals clean, package en install)
-hieronder een korte beschrijving
+
+TIP: Er is door mij deze week redelijk vaak alleen 
+[source, xml]
+----
+$ mvn (enter)
+----
+ingetikt tijdens de les. Dit kan ALLEEN als er in je pom.xml onder de builds/build een defaultGoal vermeld staat.
+ 
+.Zoals hier
+[source, xml, options="nowrap"]
+----
+<build>
+		<defaultGoal>clean generate-resources</defaultGoal>
+		<plugins>
+		
+			<plugin>
+----
+
+Het vermelden van een defaultGoal in je pom.xml is handig maar VOORAL een manier om aan je collega's te communiceren
+wat er nu eigenlijk zou moeten gebeuren om een build te maken van het onderhanden project.
+(dat scheelt weer een paar minuten uitleg aan een nieuwe mede-collega)
+
 
 == Het maken van een build
 clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
@@ -32,6 +53,7 @@ Je ziet dat maven dus een soort van lifecycle heeft.
 
 zie image:
 rloman plaatje maven hier.
+
 
 .Maak een jar file
 [source, xml]
