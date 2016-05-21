@@ -1,0 +1,57 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Maven#
+{revnumber}, 21 mei 2016
+
+== Introductie
+Hieronder een samenvatting van de punten die we deze week behandeld hebben. Ik maak een soort van highlights document
+met daarin de onderwerpen die je eigenlijk nu zou moeten weten.
+
+== Afkortingen en definities
+
+* Build: het maken van een binair bestand voor de klant van de sourcecode
+* Lokale maven repository: al je binaire bestanden. staan in je homedir (bijv. C:/Users/arjan) onder .m2/repository
+		(Dus in C:/users/arjan/.m2/repository)
+
+
+== Wat is Maven
+Maven is een project-management en build tool.
+Met Maven maak je een build met
+
+Maven heeft diverse goals (zoals clean, package en install)
+hieronder een korte beschrijving
+
+== Basis van Maven
+Maven is gebaseerd op de veelbesproken *pom.xml*
+
+
+== Het maken van een build
+clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
+compile: compiled je sources naar classes maar doet daar verder nog niets mee
+package: voert *compile* uit en maakt daarna een jar van je classes
+install: voert *package* uit en copieert (install) dan je jar in je locale maven repository
+
+Je ziet dat maven dus een soort van lifecycle heeft.
+
+zie image:
+rloman plaatje maven hier.
+
+.Maak een jar file
+[source, xml]
+----
+$ mvn clean package
+----
+
+.Maak een jar file en copy dit in je locale maven repo
+[source, xml]
+----
+$ mvn clean install
+----
+
+
+
+
+
+
+
