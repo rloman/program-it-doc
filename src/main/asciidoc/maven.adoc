@@ -17,33 +17,7 @@ met daarin de onderwerpen die je eigenlijk nu zou moeten weten.
 
 == Wat is Maven
 Maven is een project-management en build tool.
-Met Maven maak je een build met
-
-Maven heeft diverse goals (zoals clean, package en install)
-hieronder een korte beschrijving
-
-== Het maken van een build
-clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
-compile: compiled je sources naar classes maar doet daar verder nog niets mee
-package: voert *compile* uit en maakt daarna een jar van je classes
-install: voert *package* uit en copieert (install) dan je jar in je locale maven repository
-
-Je ziet dat maven dus een soort van lifecycle heeft.
-
-zie image:
-rloman plaatje maven hier.
-
-.Maak een jar file
-[source, xml]
-----
-$ mvn clean package
-----
-
-.Maak een jar file en copy dit in je locale maven repo
-[source, xml]
-----
-$ mvn clean install
-----
+Met Maven maak je een build met door een goal te vermelden als argument achter het mvn commando.
 
 == Basis van Maven
 Maven is gebaseerd op de veelbesproken *pom.xml*
@@ -63,6 +37,55 @@ De pom.xml is een XML file met daarin een beschrijving van het project en de ins
 === NB
 * Tijdens het maken van een *build* *MOET* Maven een pom.xml kunnen vinden in DE HUIDIGE DIRECTORY
 * Maven vindt de *dependencies* in de Maven central repo. Een grote bittenbak op internet met allerlei jars en zo
+
+
+== Het maken van een build
+clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
+compile: compiled je sources naar classes maar doet daar verder nog niets mee
+package: voert *compile* uit en maakt daarna een jar van je classes
+install: voert *package* uit en copieert (install) dan je jar in je locale maven repository
+
+Je ziet dat maven dus een soort van lifecycle heeft.
+
+.The Maven Lifecycle
+image:default-lifecycle-phases.png[]
+
+.Maak een jar file
+[source, xml]
+----
+$ mvn clean package
+----
+
+.Maak een jar file en copy dit in je locale maven repo
+[source, xml]
+----
+$ mvn clean install
+----
+
+== Default Goal
+
+TIP: Je kunt alleen het mvn commando geven zonder goals als je een defaultGoal vermeld in je pom.xml. Zoals hier.
+
+.mvn commando zonder een goal te vermelden
+[source, xml]
+----
+$ mvn (enter)
+----
+Dit kan ALLEEN als er in je pom.xml onder de builds/build een defaultGoal vermeld staat.
+ 
+.Zoals hier
+[source, xml, options="nowrap"]
+----
+<build>
+		<defaultGoal>clean generate-resources</defaultGoal>
+		<plugins>
+		
+			<plugin>
+----
+
+Het vermelden van een defaultGoal in je pom.xml is handig maar VOORAL een manier om aan je collega's te communiceren
+wat er nu eigenlijk zou moeten gebeuren om een build te maken van het onderhanden project.
+(dat scheelt weer een paar minuten uitleg aan een nieuwe mede-collega)
 
 
 
