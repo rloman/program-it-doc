@@ -22,26 +22,6 @@ Met Maven maak je een build met
 Maven heeft diverse goals (zoals clean, package en install)
 hieronder een korte beschrijving
 
-== Basis van Maven
-Maven is gebaseerd op de veelbesproken *pom.xml*
-
-De pom.xml is een XML file met daarin een beschrijving van het project en de instellingen van de afhandkelijkheden en dergelijke
-
-=== POM
-.Highlights van de POM
-* groupId: bevat eigenlijk de packagename waarin je je project gaat zetten
-* artifactId: bevat eigenlijk de jar die je gaat maken of eigenlijk de applicatienaam zelf
-* version: de versie die je gaat maken (iets als 0.1.0-SNAPSHOT)
-* dependencies: bevat meerdere dependency tags
-* dependency: bevat een beschrijving van een *library* waar jouw project *afhankelijk* van is
-** groupId: groupId van het artifact waar je afhankelijk van bent
-** artifactId: zie boven
-
-=== NB
-* Tijdens het maken van een *build* *MOET* Maven een pom.xml kunnen vinden in DE HUIDIGE DIRECTORY
-* Maven vindt de *dependencies* in de Maven central repo. Een grote bittenbak op internet met allerlei jars en zo
-
-
 == Het maken van een build
 clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
 compile: compiled je sources naar classes maar doet daar verder nog niets mee
@@ -65,11 +45,43 @@ $ mvn clean package
 $ mvn clean install
 ----
 
+== Basis van Maven
+Maven is gebaseerd op de veelbesproken *pom.xml*
+
+De pom.xml is een XML file met daarin een beschrijving van het project en de instellingen van de afhandkelijkheden en dergelijke
+
+=== POM
+.Highlights van de POM
+* groupId: bevat eigenlijk de packagename waarin je je project gaat zetten
+* artifactId: bevat eigenlijk de jar die je gaat maken of eigenlijk de applicatienaam zelf
+* version: de versie die je gaat maken (iets als 0.1.0-SNAPSHOT)
+* dependencies: bevat meerdere dependency tags
+* dependency: bevat een beschrijving van een *library* waar jouw project *afhankelijk* van is
+** groupId: groupId van het artifact waar je afhankelijk van bent
+** artifactId: zie boven
+
+=== NB
+* Tijdens het maken van een *build* *MOET* Maven een pom.xml kunnen vinden in DE HUIDIGE DIRECTORY
+* Maven vindt de *dependencies* in de Maven central repo. Een grote bittenbak op internet met allerlei jars en zo
+
+
+
+
 == Starten van een project
-Meerdere mogelijkheden.
-* Uitchecken via Github (zie onder)
+.Meerdere mogelijkheden.
 * Runnen van een create script
+* Uitchecken via Github (zie onder)
 * Maken via de Spring boot starter site (zie onder)
+
+=== Starten via een script
+.Script voor het starten / maken van een standard Java applicatie
+[source, shell, options="nowrap"]
+----
+include::files/create.sh[]
+----
+
+
+
 
 
 
