@@ -1,0 +1,114 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Maven#
+{revnumber}, 21 mei 2016
+
+== Introductie
+Hieronder een samenvatting van de punten die we deze week behandeld hebben. Ik maak een soort van highlights document
+met daarin de onderwerpen die je eigenlijk nu zou moeten weten.
+
+== Afkortingen en definities
+
+* Build: het maken van een binair bestand voor de klant van de sourcecode
+* Lokale maven repository: al je binaire bestanden. staan in je homedir (bijv. C:/Users/arjan) onder .m2/repository
+		(Dus in C:/users/arjan/.m2/repository)
+* pom.xml: de _startfile_ van Maven. Staat voor Project Object Model maar dat mag je weer vergeten.
+
+== Wat is Maven
+Maven is een project-management en build tool.
+Met Maven maak je een build met door een goal te vermelden als argument achter het mvn commando.
+
+== Basis van Maven
+Maven is gebaseerd op de veelbesproken *pom.xml*
+
+De pom.xml is een XML file met daarin een beschrijving van het project en de instellingen van de afhandkelijkheden en dergelijke
+
+=== POM
+.Highlights van de POM
+* groupId: bevat eigenlijk de packagename waarin je je project gaat zetten
+* artifactId: bevat eigenlijk de jar die je gaat maken of eigenlijk de applicatienaam zelf
+* version: de versie die je gaat maken (iets als 0.1.0-SNAPSHOT)
+* dependencies: bevat meerdere dependency tags
+* dependency: bevat een beschrijving van een *library* waar jouw project *afhankelijk* van is
+** groupId: groupId van het artifact waar je afhankelijk van bent
+** artifactId: zie boven
+
+=== NB
+* Tijdens het maken van een *build* *MOET* Maven een pom.xml kunnen vinden in DE HUIDIGE DIRECTORY
+* Maven vindt de *dependencies* in de Maven central repo. Een grote bittenbak op internet met allerlei jars en zo
+
+
+== Het maken van een build
+clean: maakt je target directory leeg. Je verwijdert eigenlijk de binaire bestanden 
+compile: compiled je sources naar classes maar doet daar verder nog niets mee
+package: voert *compile* uit en maakt daarna een jar van je classes
+install: voert *package* uit en copieert (install) dan je jar in je locale maven repository
+
+Je ziet dat maven dus een soort van lifecycle heeft.
+
+.The Maven Lifecycle
+image:default-lifecycle-phases.png[]
+
+.Maak een jar file
+[source, xml]
+----
+$ mvn clean package
+----
+
+.Maak een jar file en copy dit in je locale maven repo
+[source, xml]
+----
+$ mvn clean install
+----
+
+== Default Goal
+
+TIP: Je kunt alleen het mvn commando geven zonder goals als je een defaultGoal vermeld in je pom.xml. Zoals hier.
+
+.mvn commando zonder een goal te vermelden
+[source, xml]
+----
+$ mvn (enter)
+----
+Dit kan ALLEEN als er in je pom.xml onder de builds/build een defaultGoal vermeld staat.
+ 
+.Zoals hier
+[source, xml, options="nowrap"]
+----
+<build>
+		<defaultGoal>clean generate-resources</defaultGoal>
+		<plugins>
+		
+			<plugin>
+----
+
+Het vermelden van een defaultGoal in je pom.xml is handig maar VOORAL een manier om aan je collega's te communiceren
+wat er nu eigenlijk zou moeten gebeuren om een build te maken van het onderhanden project.
+(dat scheelt weer een paar minuten uitleg aan een nieuwe mede-collega)
+
+
+
+
+== Starten van een project
+.Meerdere mogelijkheden.
+* Runnen van een create script
+* Uitchecken via Github (zie onder)
+* Maken via de Spring boot starter site (zie onder)
+
+=== Starten via een script
+.Script voor het starten / maken van een standard Java applicatie
+[source, shell, options="nowrap"]
+----
+include::files/create.sh[]
+----
+
+
+
+
+
+
+
+
+
+
