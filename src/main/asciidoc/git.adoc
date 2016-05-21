@@ -1,0 +1,46 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Git#
+{revnumber}, 21 mei 2016
+
+== Afkortingen en definities
+* SCM : Source Code Management
+* POSIX: Portable Open System IX
+* commit: creert een _entry_ / log in je git repository 
+
+== Introductie
+
+Git is een versiebeheer systeem. Eigenlijk moet je het SCM noemen.
+Git is gestart en gemaakt door Linux Torvalds.
+Git is het snelde op een POSIX systeem als Linux / UNIX
+
+== Highlights
+
+.Hieronder wat commando's met hun uitleg
+|===
+
+
+|$ git clone https://github.com/rloman/programit-may-2016 | Cloned de git repo bij Github naar jouw locale systeem. Maakt een programit-may-2016 directory aan met daarin het project en *checked* de standaard branch uit.
+	Dat kan *master* zijn of *develop*
+
+|$ git add . | Voegt de huidige directory en alles daaronder toe aan versiebeheer
+|$ git add bestand.txt | Voegt bestand.txt toe aan versiebeheer
+|$ git commit -am "Mijn commit bericht" | Maakt een *commit* met _Mijn commit bericht_ in je repo
+|$ git status | Geeft de huidige status weer
+|$ git branch | Geeft een overzicht van de huidige branches weer en plaats een asterisk / sterretje voor je huidige branch
+|$ git branch mijn_nieuwe_branch | Maakt een nieuwe branch met de naam _mijn_nieuwe_branch_ aan GEBASEERD op de huidige branch MAAR blijft op de HUIDIGE branch
+|$ git checkout mijn_nieuwe_branch | Checked de zojuist gemaakte branch uit
+|$ git checkout -b mijn_nieuwe_branch | Voert bovenstaande twee stappen uit in 1 regel. Is sneller. Verder hetzelfde.
+|$ git merge branch_name |  Merged _branch_name_ naar je huidige branch
+|$ git branch -d oude_branch | Verwijderd oude_branch (faalt als je oude_branch nog niet naar een andere gemerged is)
+|$ git branch -D oude_branch | Verwijderd oude_branch (ook als hij nog niet is gemerged naar een andere branch)
+
+|===
+
+
+
+
+
+
+
