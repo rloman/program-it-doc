@@ -1,0 +1,27 @@
+:revnumber: {docVersion}
+
+= Highlights ProgramIT May 2016, Enschede Fase 2
+
+== Introduction
+
+Below you find some links to the different parts of the manual 
+
+=== link:maven.html[Part I: Maven]
+
+=== link:git.html[Part II: Git]
+
+=== link:springboot.html[Part III: Spring Boot]
+
+=== link:geo-ip.html[Part IV: GeoIP]
+
+=== link:nginx.html[Part V: Using NGinx as frontend proxy]
+
+=== link:elastalert.html[Part VI: Using ElastAlert for alerting]
+
+=== <<tipsntricks.adoc#,Part VII: Tips and Tricks>>
+
+=== link:troubleshooting.html[Part VIII: Troubleshooting]
+
+=== <<releasenotes.adoc#,Appendix: Release notes>>
+
+
