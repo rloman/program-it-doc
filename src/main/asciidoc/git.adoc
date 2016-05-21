@@ -35,6 +35,8 @@ Git is het snelde op een POSIX systeem als Linux / UNIX
 |$ git merge branch_name |  Merged _branch_name_ naar je huidige branch
 |$ git branch -d oude_branch | Verwijderd oude_branch (faalt als je oude_branch nog niet naar een andere gemerged is)
 |$ git branch -D oude_branch | Verwijderd oude_branch (ook als hij nog niet is gemerged naar een andere branch)
+|$ git init | Maakt een *NIEUWE* lege repo aan in je HUIDIGE directory. Voeg daarna wat files toe (via bovenstaande, commit ) want anders heb je nog geen branch
+	Daardoor ontstonden wat problemen afgelopen donderdag
 
 |===
 
