@@ -47,8 +47,8 @@ install: voert *package* uit en copieert (install) dan je jar in je locale maven
 
 Je ziet dat maven dus een soort van lifecycle heeft.
 
-zie image:
-include::images/default-lifecycle-phases.png[]
+.The Maven Lifecycle
+image:default-lifecycle-phases.png[]
 
 .Maak een jar file
 [source, xml]
