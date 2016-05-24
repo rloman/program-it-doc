@@ -1,0 +1,96 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#MySQL exercise#
+{revnumber}, 21 mei 2016
+
+== Introductie
+
+Hieronder een beschrijving van de exercise van mysql
+
+== Installatie van MySQL
+
+|===
+
+|Windows|Zie url
+|Linux| 
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mysql-server
+REMEMBER the password you typed during install
+
+|===
+
+== Setting up this exercise
+.Set up
+* Receive the file _best_inventory_ with the inventory from the trainer
+* Add the file at a for you conventient location
+
+
+== Create DB
+.How to create your first database
+[source, shell, options="nowrap"]
+----
+$ mysql -u root -p (enter)
+	// enter password
+// at the mysql prompt
+----
+
+[source, shell, options="nowrap"]
+----
+include::files/create-db.sql[]
+----
+
+== Create table in your created db
+
+.Login to Mysql
+[source, shell]
+----
+$ mysql -u root -p
+----
+
+.Create table in your new Db
+[source, shell]
+----
+include::files/create-table.sql[]
+----
+
+
+== Fill the table with data (manually)
+.How to add one row to the DB
+* Login to mysql
+
+[source, shell]
+----
+include::files/insert-one.sql[]
+----
+
+== Dropping a table
+.Dropping / removing a table
+[source, shell]
+----
+include::files/drop-table.sql[]
+----
+
+
+== Dropping a database
+.Dropping a database
+[source, shell]
+----
+include::files/drop-db.sql[]
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
