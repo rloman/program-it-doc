@@ -9,7 +9,3 @@ category VARCHAR(10),
 price DOUBLE PRECISION, 
 
 quantity INT);
-
-
-
-### adapt LOAD DATA INFILE "/home/rloman/repo/program-it/mysql/best_inventory.txt" INTO TABLE inventory;

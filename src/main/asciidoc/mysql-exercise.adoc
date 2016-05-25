@@ -10,22 +10,14 @@ Hieronder een beschrijving van de exercise van mysql
 
 == Installatie van MySQL
 
-|===
+.Windows
+* http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
 
-|Windows|http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
-|Linux| 
-.Instructies Linux
+.Linux
 * sudo apt-get update
 * sudo apt-get upgrade
 * sudo apt-get install mysql-server
 * REMEMBER the password you typed during install
-
-|===
-
-== Setting up this exercise
-.Set up
-* Receive the file _best_inventory_ with the inventory from the trainer
-* Add the file at a for you conventient location
 
 
 == Create DB
@@ -83,6 +75,13 @@ select * from inventory where description like '%Sony%';
 use hotel;
 update inventory set price='2500.00' where id = '431';
 
+----
+
+== Deleting a row from a table
+.How to delete a row from the table
+[source, shell]
+----
+delete from inventory where id='421';
 ----
 
 == Dropping a table
