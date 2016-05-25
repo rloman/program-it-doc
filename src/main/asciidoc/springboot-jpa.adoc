@@ -1,3 +1,14 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Springboot / JPA exercise#
+{revnumber}, 25 mei 2016
+
+== Introductie
+
+During this exercise we will use the develop branch from the repo to add a jpa repo
+
+
 ==  Add some setup
 
 === Add dependency to spring jpa
@@ -101,7 +112,7 @@ public class PersonService {
 }
 ----
 == Add PersonRepository to PersonService
-[sourcde, java]
+[source, java]
 ----
  package nl.programit.people.persistence;
  
@@ -173,6 +184,8 @@ import nl.programit.people.domain.Person;
 
 	}
  }
+----
+
 === Add findAll to PersonService
 [source, java]
 ----
