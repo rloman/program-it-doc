@@ -12,12 +12,13 @@ Hieronder een beschrijving van de exercise van mysql
 
 |===
 
-|Windows|Zie url
+|Windows|http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
 |Linux| 
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install mysql-server
-REMEMBER the password you typed during install
+.Instructies Linux
+* sudo apt-get update
+* sudo apt-get upgrade
+* sudo apt-get install mysql-server
+* REMEMBER the password you typed during install
 
 |===
 
@@ -65,6 +66,25 @@ include::files/create-table.sql[]
 include::files/insert-one.sql[]
 ----
 
+== Selecting data from table
+.Select data
+[source, shell]
+----
+use hotel;
+select * from inventory;
+select * from inventory where number=421;
+select * from inventory where description like '%Sony%';
+----
+
+== Updating a table
+.How to update a row in the table inventory
+[source, shell]
+----
+use hotel;
+update inventory set price='2500.00' where id = '431';
+
+----
+
 == Dropping a table
 .Dropping / removing a table
 [source, shell]
@@ -80,8 +100,10 @@ include::files/drop-table.sql[]
 include::files/drop-db.sql[]
 ----
 
-
-
+== Resources
+.Links
+* http://www.w3schools.com/sql/
+* https://www.mysql.com/
 
 
 
