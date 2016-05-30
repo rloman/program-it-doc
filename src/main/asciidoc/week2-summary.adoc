@@ -1,0 +1,55 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Summary week 2#
+{revnumber},30 mei 2016
+
+== Introductie
+
+== MySQL
+.How to start MySQL in Windows
+* Add it as a service
+
+== Testomgeving
+.Hoe krijg ik een fixture ingericht
+* Door bijvoorbeeld een file te maken
+** rloman: verder aanvullen
+
+== How to set the Java version in pom.xml ?
+// rloman
+
+== Jad installeren en aan de praat krijgen
+* Download
+* Install (extract)
+* Add jad to your *system* path variable
+* Go to dir where your .class file is
+* jad <className>.class
+** It rocks!
+
+== Spring
+.Annotations
+* Hocus Pocus achter de schermen
+* Referentie site van de annotaties
+* Stuk theorie voor over wat er nu precies allemaal achter zit
+* link: https://dzone.com/refcardz/spring-annotations#
+* link naar de spring source site
+
+== Dependencies toevoegen
+* Hoe groot is de kans dat je _conflicterende_ belangen krijg?
+* rloman: dit wat meer uitleggen dus
+
+== MySQL
+.Hoe moet ik inloggen
+[source, shell]
+----
+$ example: mysql -u <username> -p
+$ mysql -u rik -p
+Enter password: 
+example: use <database>
+use hotel;
+show tables;
+select * from inventory;
+----
+
+
+

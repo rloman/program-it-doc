@@ -8,6 +8,14 @@
 
 During this exercise we will use the develop branch from the repo to add a jpa repo
 
+== Clone this url to get started
+
+First go to your _repo_ directory on your file system. (your personal git repo)
+
+[source, shell]
+----
+	$ git clone https://github.com/rloman/springboot-people.git
+----
 
 ==  Add some setup
 
