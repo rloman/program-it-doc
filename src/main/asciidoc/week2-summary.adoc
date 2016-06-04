@@ -2,9 +2,11 @@
 :toclevels: 3
 
 = [red]#Summary week 2#
-{revnumber},30 mei 2016
+{docDate}
 
 == Introductie
+Hieronder een samenvatting van wat we in week 2 behandeld hebben
+
 
 == MySQL
 .How to start MySQL in Windows

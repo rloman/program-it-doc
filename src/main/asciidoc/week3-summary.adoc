@@ -2,7 +2,7 @@
 :toclevels: 3
 
 = [red]#Summary week 3#
-{revnumber},{docDate}
+{docDate}
 
 == Introductie
 Hieronder een overzicht van wat we in week 3 behandeld hebben

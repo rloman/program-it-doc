@@ -1,6 +1,7 @@
 :revnumber: {docVersion}
 
 = Hoogtepunten ProgramIT, Enschede Fase 2
+{docDate}
 
 == Introductie
 In dit HTML document vinden jullie een samenvatting van de afgelopen week behandelde lesstof.
@@ -12,9 +13,7 @@ Hieronder de diverse onderdelen
 
 === link:git.html[Git]
 
-=== <<springboot.adoc#,Spring Boot>>
-
-=== <<myql-exercise.adoc#, MySQL exercise>>
+=== <<mysql-exercise.adoc#, MySQL exercise>>
 
 === <<springboot-jpa.adoc#, SpringBoot JPA exercise>>
 

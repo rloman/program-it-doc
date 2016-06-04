@@ -2,7 +2,7 @@
 :toclevels: 3
 
 = [red]#Git#
-{revnumber}, 21 mei 2016
+{docDate}
 
 == Afkortingen en definities
 * SCM : Source Code Management

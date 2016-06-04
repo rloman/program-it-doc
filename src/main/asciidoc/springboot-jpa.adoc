@@ -2,7 +2,7 @@
 :toclevels: 3
 
 = [red]#Springboot / JPA exercise#
-{revnumber}, 25 mei 2016
+{docDate}
 
 == Introductie
 

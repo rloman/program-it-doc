@@ -2,7 +2,7 @@
 :toclevels: 3
 
 = [red]#MySQL exercise#
-{revnumber}, 21 mei 2016
+{docDate}
 
 == Introductie
 

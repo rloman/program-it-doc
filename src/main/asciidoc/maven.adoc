@@ -2,7 +2,7 @@
 :toclevels: 3
 
 = [red]#Maven#
-{revnumber}, 21 mei 2016
+{docDate}
 
 == Introductie
 Hieronder een samenvatting van de punten die we deze week behandeld hebben. Ik maak een soort van highlights document
