@@ -14,3 +14,11 @@ Hieronder de diverse onderdelen
 
 === <<springboot.adoc#,Spring Boot>>
 
+=== <<myql-exercise.adoc#, MySQL exercise>>
+
+=== <<springboot-jpa.adoc#, SpringBoot JPA exercise>>
+
+=== <<week2-summary.adoc#, Samenvatting week 2>>
+
+=== <<week3-summary.adoc#, Samenvatting week 3>>
+
