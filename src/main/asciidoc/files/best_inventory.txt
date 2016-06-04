@@ -1,0 +1,12 @@
+431	Sony VAIO PCV-MSX30	computers	2499.99	4
+236	Compaq Presario CP-1100	computers	1299.00	29
+421	IBM ThinkPad 3200X	computers	1750.00	4
+422	IBM ThinkPad 3200XS	computers	1890.00	0
+949	U2 - Greatest Hits	music	14.95	200
+766	The Beatles - White Album	music	19.50	43
+804	Elvis Presley - The Golden Years	music	9.90	152
+892	Tom Petty - Wildflowers	music	12.99	8
+6587	GE Cordless phone	telephones	45.00	28
+6588	GE Cordless phone w/ headset	telephones	59.00	15
+6590	Sony HL-50 desktop	telephones	79.95	21
+6591	Sony HL-50S 90MHz desktop	telephones	89.95	30
