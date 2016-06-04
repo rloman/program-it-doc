@@ -1,0 +1,58 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Summary week 3#
+{revnumber},{docDate}
+
+== Introductie
+Hieronder een overzicht van wat we in week 3 behandeld hebben
+
+== Annotaties
+Annotaties zijn eigenlijk een soort van *meta* code.
+Je gebruikt een annotatie alleen om iets aan te geven zodat de compiler of de jvm tijdens runtime er iets mee kan doen.
+Meer moet/mag je er ook niet van maken.
+
+het is dus niet een of andere complete service of zo.
+
+Een goed voorbeeld voor nu voor een annotatie is de *@Test* die we gebruiken voor het maken
+van unittests.
+JUnit in Eclipse / IntelliJ- en de  JUnit Maven plugin - kent deze *Annotatie* en weet dat hij deze methode dat aan moet roepen als test
+
+En natuurlijk gebruikt SpringBoot annotaties om haar @Component en @Services te kunnen maken
+
+== Tomcat
+.Wat is Tomcat
+Tomcat is een Servlet container waarje eigenlijk een *war* file kunt deployen
+
+Normaliter gebruik je Tomcat om een War te deployen.
+tegenstellend is dat in SpringBoot zelf een Tomcat instance zit.
+Dit is _hip_ en vooral handig bij het maken van veel kleinere applicaties die
+je dan zelfstandig uit- en aan kunt zetten
+
+Verder lees dit maar eens een keer:
+http://tomcat.apache.org
+
+== Reports maken met Maven
+.Cobertura
+[source, shell]
+----
+	$ mvn cobertura:cobertura
+----
+
+maakt een Cobertura test verslag in de _target/site/cobertura/index.html_
+
+te openen via een browser via: file://<pad naar jouw repo/applicatie>/target/site/cobertura/index.html
+
+.Maven site
+[source, shell]
+----
+	$ mvn site:site
+----
+
+maakt een uitgebreide(re) site
+te openen via een browser via: file://<pad naar jouw repo/applicatie>/target/site/index.html
+
+
+== FindBugs
+Verder hebben we nog de Findbugs plugin in Eclipse geinstalleerd
+
