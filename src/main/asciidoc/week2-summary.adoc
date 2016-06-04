@@ -14,7 +14,7 @@
 .Hoe krijg ik een fixture ingericht
 * Door bijvoorbeeld een file te maken met daarin key value paren voor geldige test gevallen
 * Of je maakt een soort van Map in je code waarin je een key, value paar opneemt
-* Je moet het niet te breed zien. Dit is een unittest en niet een complete *echte* test die een tester dot
+* Je moet het niet te breed zien. Dit is een unittest en niet een complete *echte* test die een tester doet
 
 == How to set the Java version in pom.xml ?
 .Door dit op te nemen in jouw pom in de build sectie
@@ -48,9 +48,7 @@
 
 == Spring
 .Annotations
-* Referentie site van de annotaties
-** 
-* Stuk theorie voor over wat er nu precies allemaal achter zit
+* link: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 * link: https://dzone.com/refcardz/spring-annotations#
 * link naar de spring source site
 * Link tip van Hans (moet hem zelf nog gaan kijken)
@@ -95,6 +93,8 @@ select * from inventory;
 * Maak methodes die beginnen met _test_
 * Annoteer die methode met @Test
 * Run de test
+
+
 .Voorbeeld
 [source, java]
 ----
