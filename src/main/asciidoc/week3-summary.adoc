@@ -22,7 +22,7 @@ En natuurlijk gebruikt SpringBoot annotaties om haar @Component en @Services te 
 
 == Tomcat
 .Wat is Tomcat
-Tomcat is een Servlet container waarje eigenlijk een *war* file kunt deployen
+Tomcat is een Servlet container waar je eigenlijk een *war* file kunt deployen
 
 Normaliter gebruik je Tomcat om een War te deployen.
 tegenstellend is dat in SpringBoot zelf een Tomcat instance zit.
