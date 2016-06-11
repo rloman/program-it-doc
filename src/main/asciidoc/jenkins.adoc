@@ -1,0 +1,85 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Jenkins#
+{docDate}
+
+== Introduction
+What is Jenkins
+
+Jenkins is a *butler* and is this case that is the best word you can find for this machine which really runs all your
+to do but not perse happy to do things :-)
+
+== Install
+* Download
+** https://jenkins.io/
+
+== Run
+.How to run
+[source, shell]
+----
+$ java -jar jenkins.war
+----
+
+== Do
+.Getting started
+* Manage Jenkins
+* Add Git plugin
+* Set Maven
+** set Maven home to /usr/share/maven (or where your Maven is)
+
+.Add job
+* New item
+* New Maven project
+* Git
+** Set Version control to *Git*
+** Set url in the git settings
+* Maven
+** Set goals to clean install
+
+== Fine tuning
+We will add some nice plugins in this section to get you acquintainted with our friend Jenkins
+
+.Add green balls plugin
+* Target of this plugin is to make the balls green instead of blue
+* Manage jenkins
+* Manage plugins
+* Add Green balls plugin
+
+.Job configuration history plugin
+* Target of this plugin is to enable a kind of rollback possibility when your changes fail the jenkins job
+
+.Monitoring plugin
+* Target: to get insight of Jenkins server (based on the populair Java Melody framework)
+* After installation of the Monitoring plugin
+** http://localhost:8080/monitoring
+
+.Build pipeline plugin
+* Target: to show you the flow of your builds when (mis)using Jenkins as a deploy server
+
+TIP: http://www.praqma.com/stories/top-jenkins-plugins/
+
+== Issues
+.How to run Jenkins on an other port than the default 8080
+[source, shell]
+----
+	$ java -jar jenkins.war --httpPort=<port>
+e.g.	$ java -jar jenkins.war --httpPort=8181     (to run on port 8181)
+----
+
+
+== More links
+. Starting / Accessing Jenkins
+* https://wiki.jenkins-ci.org/display/JENKINS/Starting+and+Accessing+Jenkins
+
+.Top ten plugins
+* http://www.praqma.com/stories/top-jenkins-plugins/
+
+== Docker
+.When time permits / for later
+* link to Docker image
+** https://hub.docker.com/r/aespinosa/jenkins/
+** https://hub.docker.com/_/jenkins/
+
+
+
