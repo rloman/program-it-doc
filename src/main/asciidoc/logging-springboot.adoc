@@ -11,14 +11,16 @@ Slf4j (Simple Logging Facade for Java) is one of the major players in the loggin
 It is used in the SpringBoot framework
 
 == Important files for the slf4j logging
+
 === logback.xml in src/main/resources
 
-I added below a more complex but complete logback.xml file.
-It also logs to file
-It also rolls the file over
+
+.I added below a more complex but complete logback.xml file
+* It also logs to file
+* It also rolls the file over
 
 
-.example
+.logback.xml (example)
 [source, xml]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
@@ -80,33 +82,28 @@ It also rolls the file over
 [source, xml]
 ----
 <dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-
+	<groupId>ch.qos.logback</groupId>
+	<artifactId>logback-classic</artifactId>
+	<version>${logback.version}</version>
+</dependency>
 ----
 
 == Using the logging in the code
 The previous part was for to set things up
 
 .To use logging in your code just do this
-[source, java]
+[source, java, options="nowrap"]
 ----
 public class Main {
 
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
-
 		logger.debug("welcome() is executed, value {}", "Program IT rocks");
-
 		logger.error("This is Error message", new Exception("Testing"));
-
 		for (int i = 1; i < 11; i++) {
 			logger.info("The square of [{}] is [{}]", i, i * i);
 		}
-
 	}
 }
 ----

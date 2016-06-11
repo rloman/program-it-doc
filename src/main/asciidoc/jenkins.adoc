@@ -36,7 +36,6 @@ $ java -jar jenkins.war
 ** Set url in the git settings
 * Maven
 ** Set goals to clean install
-** Empty also works
 
 == Fine tuning
 We will add some nice plugins in this section to get you acquintainted with our friend Jenkins
