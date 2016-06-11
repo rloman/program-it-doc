@@ -1,0 +1,189 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#SLF4J and SpringBoot Logging#
+{docDate}
+
+== Introduction
+.SLF4j
+Slf4j (Simple Logging Facade for Java) is one of the major players in the logging area and can be used with several other logging frameworks
+
+It is used in the SpringBoot framework
+
+== Important files for the slf4j logging
+=== logback.xml in src/main/resources
+
+I added below a more complex but complete logback.xml file.
+It also logs to file
+It also rolls the file over
+
+
+.example
+[source, xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	
+	<!--  file logging -->
+	<property name="DEV_HOME" value="/home/rloman/repo/spring-mvc-logback" />
+
+	<appender name="FILE-AUDIT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/applog.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<logger name="org.springframework" level="debug" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="eu.programit" level="debug" additivity="false">
+		<appender-ref ref="STDOUT" />
+			<appender-ref ref="FILE-AUDIT" />
+	</logger>
+	 
+	<root level="error">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE-AUDIT" />
+	</root>
+	
+
+</configuration>
+
+----
+
+=== Maven dependencies
+.Add this dependency to your pom.xml
+[source, xml]
+----
+<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+----
+
+== Using the logging in the code
+The previous part was for to set things up
+
+.To use logging in your code just do this
+[source, java]
+----
+public class Main {
+
+	private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
+	public static void main(String[] args) {
+
+		logger.debug("welcome() is executed, value {}", "Program IT rocks");
+
+		logger.error("This is Error message", new Exception("Testing"));
+
+		for (int i = 1; i < 11; i++) {
+			logger.info("The square of [{}] is [{}]", i, i * i);
+		}
+
+	}
+}
+----
+
+== More info
+* http://www.slf4j.org/
+
+
+== Spring Boot logging
+Spring Boot logging is rather simplyfied.
+
+You can use the logback.xml is the situation gets more complicated.
+
+For simple logging just use this in your application.properties
+
+.application.properties
+[source, properties, options="nowrap"]
+----
+logging.level.nl.programit.people.persistence=DEBUG # set level for package nl.programit.people.persistence
+logging.level.nl.programit.people.controller=DEBUG # set level for controller to DEBUG
+logging.file=myapplication.log #default logs to console and also now log to my.application.log
+
+----
+
+.Logging in the code
+[source, java, options="nowrap"]
+----
+package nl.programit.people.controller;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import nl.programit.people.domain.Person;
+import nl.programit.people.persistence.PersonService;
+
+@Controller
+public class PersonController {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private PersonService personService;
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public @ResponseBody String list() {
+		return this.personService.findAll().toString();
+	}
+
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public @ResponseBody String provideUploadInfo() {
+		return "You can upload some by posting to this url.";
+	}
+
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void handleFileUpload(@RequestParam("name") String name, @RequestParam("code") String code, 
+			@RequestParam(required = false, value = "renderPresentationNotes") boolean renderPresentationNotes,
+			@RequestParam("lastName") String lastName, HttpServletResponse response) {
+		
+		logger.error("The code is [{}]", code);
+
+		Person person = new Person();
+		person.setFirstName(name);
+		person.setLastName(lastName);
+		
+		this.personService.save(person);
+
+	}
+}
+
+----
+
+

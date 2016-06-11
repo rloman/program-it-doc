@@ -12,6 +12,7 @@ to do but not perse happy to do things :-)
 
 == Install
 * Download
+** https://jenkins.io/
 
 == Run
 .How to run
@@ -51,11 +52,35 @@ We will add some nice plugins in this section to get you acquintainted with our 
 
 .Monitoring plugin
 * Target: to get insight of Jenkins server (based on the populair Java Melody framework)
-
+* After installation of the Monitoring plugin
+** http://localhost:8080/monitoring
 
 .Build pipeline plugin
 * Target: to show you the flow of your builds when (mis)using Jenkins as a deploy server
 
 TIP: http://www.praqma.com/stories/top-jenkins-plugins/
+
+== Issues
+.How to run Jenkins on an other port than the default 8080
+[source, shell]
+----
+	$ java -jar jenkins.war --httpPort=<port>
+e.g.	$ java -jar jenkins.war --httpPort=8181     (to run on port 8181)
+----
+
+
+== More links
+. Starting / Accessing Jenkins
+* https://wiki.jenkins-ci.org/display/JENKINS/Starting+and+Accessing+Jenkins
+
+.Top ten plugins
+* http://www.praqma.com/stories/top-jenkins-plugins/
+
+== Docker
+.When time permits / for later
+* link to Docker image
+** https://hub.docker.com/r/aespinosa/jenkins/
+** https://hub.docker.com/_/jenkins/
+
 
 
