@@ -5,7 +5,7 @@
 {docDate}
 
 == Introductie
-In dit HTML document vinden jullie de inhoud van de lesstof en Inhoud van de lesstof.
+In dit HTML document vinden jullie de inhoud van de lesstof voor de komende week(en)
 
 
 
