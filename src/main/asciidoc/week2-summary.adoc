@@ -1,11 +1,11 @@
 :revnumber: {docVersion}
 :toclevels: 3
 
-= [red]#Summary week 2#
+= [red]#Inhoud week 2#
 {docDate}
 
 == Introductie
-Hieronder een samenvatting van wat we in week 2 behandeld hebben
+Hieronder de inhoud van de planning van week 2
 
 
 == MySQL
