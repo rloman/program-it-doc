@@ -12,7 +12,16 @@ During this part of the training we will instruct using JPA
 . ManyToOne 
 . ManyToMany
 
+== Definitions
+.Some definitions
+* Unidirectional vs bidirectional
+* OneToMany 
+* ManyToOne 
+* ManyToMany
+
 == OneToOne
+
+=== Unidirectional
 
 Suppose an Employee always has a single address and we have to model it in jpa
 
@@ -103,7 +112,7 @@ Now we have create a so called *unidirectional relationship* which means we can 
 
 *The address table / entity does not have any clue to which person it belongs!!!*
 
-== Bidirectional
+=== Bidirectional
 Suppose we want to tell JPA also to wire the direction from Address to Person
 Than we have to add this to the JPA Address entity
 
@@ -159,7 +168,7 @@ Just pick the name of the variable and you are done ... for now :-)
 [source, java]
 ----
 @OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
-	private List<Phone> phones;
+private List<Phone> phones;
 ----
 
 .Add the @ManyToOne annotation to the belonging side
