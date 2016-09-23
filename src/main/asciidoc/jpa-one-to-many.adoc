@@ -1,15 +1,16 @@
 :revnumber: {docVersion}
 :toclevels: 3
 
-= [red]#JPA OneToMany ManyToOne ManyToMany #
+= [red]#JPA regarding relationships#
 {docDate}
 
 == Introductie
 
 During this part of the training we will instruct using JPA
-.OneToMany 
-.ManyToOne 
-.ManyToMany
+
+. OneToMany 
+. ManyToOne 
+. ManyToMany
 
 == OneToOne
 
@@ -91,13 +92,16 @@ public class Employee {
   private Address address;
 }
 ----
-Using the least work principe that is all we have to do to create the relationship.
-.Under the hood JPA does the following work for us:
+
+Using the least work principe that is all we have to do to create the relationship
+
+.Under the hood JPA does the following work for us
 * it creates the table *Address*
 * it creates an *address_id* column in the table Person
 
-Now we have create a so called *unidirectional relationship* which means we can only traverse from the Person to the Address.
-The address table / entity does not have any clue to which person it belongs!!!
+Now we have create a so called *unidirectional relationship* which means we can only traverse from the Person to the Address
+
+*The address table / entity does not have any clue to which person it belongs!!!*
 
 == Bidirectional
 Suppose we want to tell JPA also to wire the direction from Address to Person
@@ -136,7 +140,7 @@ We than use the *@OneToMany* annotation
 [source, java]
 ----
 @OneToMany
-	private List<Phone> phones;
+private List<Phone> phones;
 ----
 
 JPA then creates a person_hobbies table? Why ?
@@ -162,7 +166,7 @@ Just pick the name of the variable and you are done ... for now :-)
 [source, java]
 ----
 @ManyToOne
-	private Person person;
+private Person person;
 ----
 
 == @ManyToMany
@@ -175,7 +179,8 @@ Suppose a person has many hobbies and a hobby can belong to multiple persons.
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-	private List<Hobby> fietsen = new ArrayList<>();----
+private List<Hobby> fietsen = new ArrayList<>();
+----
 
 
 === Bidirectional
@@ -186,20 +191,19 @@ Suppose want to see al people who like *running*
 [source, java]
 ----
 @ManyToMany(mappedBy="people", cascade=CascadeType.ALL)
-	private List<Hobby> hobbies = new ArrayList<>();
+private List<Hobby> hobbies = new ArrayList<>();
 ----
 
 .Add the following to the Hobby class
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-	private List<Person> people = new ArrayList<>();
+private List<Person> people = new ArrayList<>();
 ----
 
 TIP: Never use a mappedBy on both sides of the relationship. Simply only on the *owning* side
 
-TIP: Be aware for the following
-* using a getter to get the List of Hobbies out of person and than adding an item to the List will eventually fail.
+TIP: Be aware for the following. Using a getter to get the List of Hobbies out of person and than adding an item to the List will eventually fail.
 Question: is the List when I am getting it a JPA object?
 
 Solution: create a getter and create an addHobby to the Person class
