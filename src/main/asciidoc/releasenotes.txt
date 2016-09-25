@@ -1,0 +1,15 @@
+v2.0.0
+      Rename Enschede to Eindhoven
+      Set global theoretical instructions for jpa
+      Add jpa relations
+      fix some typos
+      Add some images for clarification of JPA relationships
+      Add image to show the roadmap regarding Jenkins deploy pipeline
+
+v1.1.0
+      Add Jenkins
+      Add Jenkins, MOckito and Logging using slf4j and springbootlogging
+      Update the index file with the contents
+
+v1.0.0
+      initial version so everything is new here :-)
