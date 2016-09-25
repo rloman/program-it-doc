@@ -1,44 +1,23 @@
 :revnumber: {docVersion}
 :toclevels: 3
 
-= [red]#Springboot / JPA exlained#
+= [red]#Springboot / JPA exercise#
 {docDate}
 
 == Introductie
 
-During this part of the training we will instruct using JPA
+During this exercise we will use the develop branch from the repo to add a jpa repo
 
-=== Hitting the DB
+== Clone this url to get started
 
-== Set correct userId and add mysql dep to pom.xml
+First go to your _repo_ directory on your file system. (your personal git repo)
 
-=== Add mysql-connector dependency to pom.xml
-[source, xml]
+[source, shell]
 ----
- 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-data-jpa</artifactId>
- 		</dependency>
+	$ git clone https://github.com/rloman/springboot-people.git
 ----
 
-=== Add / amend application.properties
-[source, properties, options="nowrap"]
-----
-
- multipart.maxFileSize: 128MB
- multipart.maxRequestSize: 128MB
- 
-spring.datasource.url=jdbc:mysql://localhost:3306/person
-spring.datasource.driverClassName=com.mysql.jdbc.Driver
-spring.datasource.username=root
-spring.datasource.password=bloemen
-spring.jpa.database_platform=org.hibernate.dialect.MySQL5Dialect
-----
-
-==  First getting started with JPA
+==  Add some setup
 
 === Add dependency to spring jpa
 [source, xml]
@@ -54,11 +33,47 @@ spring.jpa.database_platform=org.hibernate.dialect.MySQL5Dialect
  		</dependency>
 ----
 
-=== Add application.properties file (setting the connection to the db0
+=== Change Person class
+.Add @Entity and id to Person class
+[source, java, options="nowrap"]
+---- 
+@Entity
+ public class Person implements Serializable {
+ 
+ 	private static final long serialVersionUID = 5801378338363587926L;
+
+	// technical key
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+ 	private String firstName;
+ 	private String lastName;
+ 
++	public long getId() {
++		return id;
++	}
++
++	public void setId(long id) {
++		this.id = id;
++	}
++
+ 	public String getFirstName() {
+ 		return firstName;
+ 	}
+ 	public String toString() {
+ 		return "Person [firstName=" + firstName + ", lastName=" + lastName + "]";
+ 	}
++
+----
+
+=== Add application.properties file
 .Add application.properties
 [source, properties, options="nowrap"]
 ---- 
-
+ 
+ multipart.maxFileSize: 128MB
+ multipart.maxRequestSize: 128MB
 
 spring.datasource.url=jdbc:mysql://localhost:3306/people
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
@@ -71,18 +86,9 @@ spring.jpa.database_platform=org.hibernate.dialect.MySQL5Dialect
 spring.jpa.hibernate.ddl-auto=update
 ----
 
-== Using JPA
-
-=== Add some annotation to a class
-
-== @Entity to show to Spring Boot that this class is now an Entity (meaning a table in the database)
-== Add an 'private long id' to the class
-== @Id to show to Spring Boot that this property of this class is the (technical) id of the class (meaning a column in the table)
-== Add getters and setters to the just created id field
+== Add PersonService and PersonRepository
 
 === Add PersonRepository
-
-.Will know how to persist the object in general case
 [source, java]
 ----
 package nl.programit.people.persistence;
@@ -99,10 +105,7 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 }
 
 ----
-
 === Add PersonService
-
-.Uses the personRepository
 [source,java]
 ----
 package nl.programit.people.persistence;
@@ -114,11 +117,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class PersonService {
 
-
-
 }
 ----
-
 == Add PersonRepository to PersonService
 [source, java]
 ----
@@ -205,3 +205,33 @@ import nl.programit.people.domain.Person;
 +	}
  
  }
+
+----
+== Set correct userId and add mysql dep to pom.xml
+=== Add mysql-connector dependency to pom.xml
+[source, xml]
+----
+ 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+ 		</dependency>
+----
+
+=== Add / amend application.properties
+[source, properties, options="nowrap"]
+----
+
+ multipart.maxFileSize: 128MB
+ multipart.maxRequestSize: 128MB
+ 
+spring.datasource.url=jdbc:mysql://localhost:3306/person
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=bloemen
+spring.jpa.database_platform=org.hibernate.dialect.MySQL5Dialect
+----
+
+

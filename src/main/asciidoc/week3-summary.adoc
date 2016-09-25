@@ -1,7 +1,7 @@
 :revnumber: {docVersion}
 :toclevels: 3
 
-= [red]#Summary week 3#
+= [red]#Inhoud week 3#
 {docDate}
 
 == Introductie

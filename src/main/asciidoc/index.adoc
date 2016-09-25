@@ -1,15 +1,15 @@
 :revnumber: {docVersion}
 :toclevels: 5
 
-= Hoogtepunten ProgramIT, Enschede Fase 2
+= Hoogtepunten ProgramIT, Eindhoven Fase 2
 {docDate}
 
 == Introductie
-In dit HTML document vinden jullie een samenvatting van de afgelopen weken behandelde lesstof.
-Let op: het gaat om highlights. Deze highlights zouden bij jullie nu ongeveer _binnen_ moeten zijn
+In dit HTML document vinden jullie de inhoud van de lesstof voor de komende week(en)
 
 
-=== Samenvatting week 1
+
+=== Inhoud week 1
 
 ==== link:maven.html[Maven]
 
@@ -17,13 +17,15 @@ Let op: het gaat om highlights. Deze highlights zouden bij jullie nu ongeveer _b
 
 ==== <<mysql-exercise.adoc#, MySQL exercise>>
 
-==== <<springboot-jpa.adoc#, SpringBoot JPA exercise>>
+==== <<springboot-jpa.adoc#, JPA exercise>>
 
-=== <<week2-summary.adoc#, Samenvatting week 2>>
+==== <<jpa-one-to-many.adoc#, JPA relationships (OneToOne, OneToMany and ManyToMany)>>
 
-=== <<week3-summary.adoc#, Samenvatting week 3>>
+=== <<week2-summary.adoc#, Inhoud week 2>>
 
-=== Samenvatting week 4
+=== <<week3-summary.adoc#, Inhoud week 3>>
+
+=== Inhoud week 4
 
 ==== <<logging-springboot.adoc#, Logging met SLF4j / Spring Boot>>
 

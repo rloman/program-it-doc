@@ -5,8 +5,7 @@
 {docDate}
 
 == Introductie
-Hieronder een samenvatting van de punten die we deze week behandeld hebben. Ik maak een soort van highlights document
-met daarin de onderwerpen die je eigenlijk nu zou moeten weten.
+Hieronder de inhoud van de lesstof omtrent Maven
 
 == Afkortingen en definities
 
