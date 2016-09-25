@@ -10,6 +10,22 @@ What is Jenkins
 Jenkins is a *butler* and is this case that is the best word you can find for this machine which really runs all your
 to do but not perse happy to do things :-)
 
+== Roadmap Jenkins for our project
+
+image::jenkins-deploy-principle.png[]
+
+.first (baby) steps
+* set Jenkins to validate our build
+** $ mvn clean install
+** send mail if build fails
+* add some nice Jenkins plugins
+** to get familiar with Jenkins GUI
+
+.second (deploy steps) (next week / later)
+* setup test server
+* add Publish over ssh plugin
+* ...
+
 == Install
 * Download
 ** https://jenkins.io/
