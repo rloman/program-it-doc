@@ -25,6 +25,8 @@ During this part of the training we will instruct using JPA
 
 Suppose an Employee always has a single address and we have to model it in jpa
 
+image::ObjectRelational-OneToOne.jpg[]
+
 So we create the entity Addresss
 
 [source, java]
@@ -136,13 +138,15 @@ Nothing ... why ? :-)
 
 Since if jpa has an adress entity he can found the person by finding a person with an adress_id which is the samen as the id of this address instance.
 
-image
 
 == @OneToMany
 
 === Unidirectional
 
-Suppose a person has many phones but a phone belongs to one person.
+Suppose a person has many phones AND a phone belongs to one person
+
+image::ObjectRelational-ManyToOne.jpg[]
+
 
 We than use the *@OneToMany* annotation
 
@@ -182,7 +186,10 @@ private Person person;
 
 === Unidirectional
 
-Suppose a person has many hobbies and a hobby can belong to multiple persons.
+Suppose a person has many hobbies and a hobby can belong to multiple persons
+
+.class diagram
+image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 
 .Add this to the person class
 [source, java]
@@ -191,6 +198,7 @@ Suppose a person has many hobbies and a hobby can belong to multiple persons.
 private List<Hobby> fietsen = new ArrayList<>();
 ----
 
+The machine creates a join table (in this case Enrollment)
 
 === Bidirectional
 
@@ -230,10 +238,14 @@ Solution: create a getter and create an addHobby to the Person class
 == DIY
 .Do it yourself
 
-Just implement the above changes to your people project.
-
-And be aware that you understand what you are doing. 
+* Implement the above changes to your people project
+** Add Address-entity and add the @OneToOne relationship
+** Add Phone-entity and add the @OneToMany relationship
+** Add Hobby-entity and add the @ManyToMany relationship
+* Watch what happens during the starting of the application with your database-structure
 The upcoming week (wednesday, friday ...) we will implmement this for the Liebregts case)
 
+== Follow up
+* During this week we must implement the lessons learned above in the Liebregts case
 
 
