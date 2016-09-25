@@ -17,7 +17,9 @@ In dit HTML document vinden jullie de inhoud van de lesstof voor de komende week
 
 ==== <<mysql-exercise.adoc#, MySQL exercise>>
 
-==== <<springboot-jpa.adoc#, SpringBoot JPA exercise>>
+==== <<springboot-jpa.adoc#, JPA exercise>>
+
+==== <<jpa-one-to-many.adoc#, JPA relationships (OneToOne, OneToMany and ManyToMany)>>
 
 === <<week2-summary.adoc#, Inhoud week 2>>
 
