@@ -156,9 +156,9 @@ We than use the *@OneToMany* annotation
 private List<Phone> phones;
 ----
 
-JPA then creates a person_hobbies table? Why ?
+JPA then creates a person_phones table? Why ?
 
-Since the entity Hobby does not know that he is even linked to a Person hence JPA creates a so called *link table*
+Since the entity Phone does not know that he is even linked to a Person hence JPA creates a so called *link table*
 (Dutch: koppel tabel)
 
 === Bidirectional
