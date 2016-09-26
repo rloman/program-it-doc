@@ -153,7 +153,7 @@ We than use the *@OneToMany* annotation
 [source, java]
 ----
 @OneToMany
-private List<Phone> phones;
+private List<Phone> phones = new ArrayList<>();
 ----
 
 JPA then creates a person_phones table? Why ?
