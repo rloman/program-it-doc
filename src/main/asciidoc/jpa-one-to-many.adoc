@@ -195,7 +195,7 @@ image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-private List<Hobby> fietsen = new ArrayList<>();
+private List<Hobby> hobbies = new ArrayList<>();
 ----
 
 The machine creates a join table (in this case Enrollment)
