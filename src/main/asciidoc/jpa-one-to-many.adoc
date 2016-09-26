@@ -19,7 +19,7 @@ During this part of the training we will instruct using JPA
 * ManyToOne 
 * ManyToMany
 
-== OneToOne
+== @OneToOne
 
 === Unidirectional
 
