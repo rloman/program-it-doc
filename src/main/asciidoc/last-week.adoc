@@ -1,0 +1,118 @@
+:revnumber: {docVersion}
+:toclevels: 3
+
+= [red]#Building frontend webapps#
+{docDate}
+
+== List of most populair frontend tools and their function
+
+* nodeJS
+** front end web server
+* npm
+** back end dependency manager for node which in fact is the backend of the front end which is confusing but true
+* bower
+** front end dependency manager (for sass and things like that)
+* yeoman
+** a generator for several files
+** contains three elements
+*** yo, grunt bower
+** yo is like Maven archetype
+** http://yeoman.io
+** nice presentation
+*** http://www.slideshare.net/makatcareerinjava/bootstrapping-angular-js-with-bower-grunt-yeoman
+* grunt (deprecated in favor of gulp)
+* gulp
+** for running custom tasks
+** video: https://www.youtube.com/watch?v=dwSLFai8ovQ
+* karma
+** for testing in ng-cli created environment
+** export CHROME_BIN=/usr/bin/chromium-browser
+** $ npm test  (will run karma test)
+** url: http://www.bradoncode.com/blog/2015/05/19/karma-angularjs-testing/
+* jHipster :-)
+
+image::frontend-overview.jpg[]
+
+== Using the Angular2 CLI
+
+=== Installing
+* Install using $ sudo npm install -g angular-cli
+* $ ng --version (prints version)
+
+=== Creating an app
+.Command which might take 2 minutes
+[source, shell]
+----
+rloman@cheetah ~/repo/test $ ng new hello-world
+Could not start watchman; falling back to NodeWatcher for file system events.
+Visit http://ember-cli.com/user-guide/#watchman for more info.
+installing ng2
+  create .editorconfig
+  create README.md
+  create src/app/app-routing.module.ts
+  create src/app/app.component.css
+  create src/app/app.component.html
+  create src/app/app.component.spec.ts
+  create src/app/app.component.ts
+  create src/app/app.module.ts
+  create src/app/index.ts
+  create src/app/shared/index.ts
+  create src/assets/.gitkeep
+  create src/assets/.npmignore
+  create src/environments/environment.prod.ts
+  create src/environments/environment.ts
+  create src/favicon.ico
+  create src/index.html
+  create src/main.ts
+  create src/polyfills.ts
+  create src/styles.css
+  create src/test.ts
+  create src/tsconfig.json
+  create src/typings.d.ts
+  create angular-cli.json
+  create e2e/app.e2e-spec.ts
+  create e2e/app.po.ts
+  create e2e/tsconfig.json
+  create .gitignore
+  create karma.conf.js
+  create package.json
+  create protractor.conf.js
+  create tslint.json
+Successfully initialized git.
+Installing packages for tooling via npm.
+
+... after two minutes (red).
+Installed packages for tooling via npm.
+
+----
+
+== Using
+* enter to the newly created dir
+** cd hello
+* Open the project in vscode or whatever
+* package.json (voor NodeJS deps)
+* main.ts (main file) (boot.js)
+
+== First run
+** $ ng serve
+** http://localhost:4200
+** Hot reloading enabled
+* create a new component
+** ng g(enerate) component hello
+* create a new directive
+** ng g(enerate) directive shared/my-directive
+* create a new pipe
+** ng g(enerate) pipe shared/my-pipe
+* create a new service
+** ng g service post
+*** Creates app/post.service.ts
+* create a production build
+** $ ng build --prod
+* run a to be created production build
+** $ ng serve --prod
+
+.Video
+https://www.youtube.com/watch?v=YAfwASGlLNQ
+
+
+
