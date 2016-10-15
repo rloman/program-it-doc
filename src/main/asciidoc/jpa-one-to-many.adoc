@@ -198,7 +198,7 @@ image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 private List<Hobby> hobbies = new ArrayList<>();
 ----
 
-The machine creates a join table (in this case Enrollment)
+The machine creates a join table (in this case *hobbies_people*)
 
 === Bidirectional
 
@@ -221,6 +221,8 @@ private List<Person> people = new ArrayList<>();
 TIP: Never use a mappedBy on both sides of the relationship. Simply only on the *owning* side
 
 TIP: Be aware for the following. Using a getter to get the List of Hobbies out of person and than adding an item to the List will eventually fail.
+You have to add a hobby through the owning class (in this case through Person)
+
 Question: is the List when I am getting it a JPA object?
 
 Solution: create a getter and create an addHobby to the Person class
