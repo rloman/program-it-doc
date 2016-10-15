@@ -115,4 +115,9 @@ Installed packages for tooling via npm.
 https://www.youtube.com/watch?v=YAfwASGlLNQ
 
 
+== Follow
+* Install the Angular2 cli
+* Install gulp and follow the video above
+
+
 
