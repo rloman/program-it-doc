@@ -153,7 +153,7 @@ We than use the *@OneToMany* annotation
 [source, java]
 ----
 @OneToMany
-private List<Phone> phones = new ArrayList<>();
+private Set<Phone> phones = new HashSet<>();
 ----
 
 JPA then creates a person_phones table? Why ?
@@ -166,13 +166,13 @@ Suppose we want to be able to get the person which own the phone
 
 Add the mappedBy property to the @OneToMany annotation on the owning side
 
-The mappedBy is ALWAYS the type of the List we are dealing with. Hence in this case it is the Phone class - which has the @ManyToOne - annotation.
+The mappedBy is ALWAYS the type of the Set we are dealing with. Hence in this case it is the Phone class - which has the @ManyToOne - annotation.
 Just pick the name of the variable and you are done ... for now :-)
 
 [source, java]
 ----
 @OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
-private List<Phone> phones;
+private Set<Phone> phones;
 ----
 
 .Add the @ManyToOne annotation to the belonging side
@@ -195,7 +195,7 @@ image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-private List<Hobby> hobbies = new ArrayList<>();
+private Set<Hobby> hobbies = new HashSet<>();
 ----
 
 The machine creates a join table (in this case *hobbies_people*)
@@ -208,22 +208,22 @@ Suppose want to see al people who like *running*
 [source, java]
 ----
 @ManyToMany(mappedBy="people", cascade=CascadeType.ALL)
-private List<Hobby> hobbies = new ArrayList<>();
+private Set<Hobby> hobbies = new HashSet<>();
 ----
 
 .Add the following to the Hobby class
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-private List<Person> people = new ArrayList<>();
+private Set<Person> people = new HashSet<>();
 ----
 
 TIP: Never use a mappedBy on both sides of the relationship. Simply only on the *owning* side
 
-TIP: Be aware for the following. Using a getter to get the List of Hobbies out of person and than adding an item to the List will eventually fail.
+TIP: Be aware for the following. Using a getter to get the Set of Hobbies out of person and than adding an item to the Set will eventually fail.
 You have to add a hobby through the owning class (in this case through Person)
 
-Question: is the List when I am getting it a JPA object?
+Question: is the Set when I am getting it a JPA object?
 
 Solution: create a getter and create an addHobby to the Person class
 
