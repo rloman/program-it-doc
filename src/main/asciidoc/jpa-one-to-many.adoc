@@ -184,6 +184,35 @@ private Person person;
 
 == @ManyToMany
 
+=== Introducing jointable
+
+In a ManyToMany relationship we have a so-called many-to-many relationship between two classes.
+
+e.g. A Person can have many hobbies and a hobby can have many Person(s).
+
+JPA will create a so called join-table / link-table (Dutch: koppeltabel) to link the relationship between the two
+
+=== Introducing Cascading
+
+During this ManyToMany relationship part we also are talking about Cascading.
+In this case, cascading means ... what should we do when we delete a Person? Should we also delete his phones in the relationship?
+
+What you should know is that the @ManyToMany annotation has a 'cascade' attribute which you can set.
+
+.That cascade attribute should contain an 'CascadeType' enum value which are ...
+* ALL
+* PERSIST
+* MERGE
+* REMOVE
+* REFRESH
+* DETACH
+
+You are telling with this annotation what JPA should do on the action.
+So if we say ... cascade=CascadeType.REMOVE on the Person class on the Hobbies set than removing a Person will also remove the links from the linktable after deletion
+
+.More explaination regarding Cascading
+* https://stackoverflow.com/questions/4935095/jpa-hibernate-many-to-many-cascading
+
 === Unidirectional
 
 Suppose a person has many hobbies and a hobby can belong to multiple persons
@@ -223,9 +252,14 @@ TIP: Never use a mappedBy on both sides of the relationship. Simply only on the 
 TIP: Be aware for the following. Using a getter to get the Set of Hobbies out of person and than adding an item to the Set will eventually fail.
 You have to add a hobby through the owning class (in this case through Person)
 
-Question: is the Set when I am getting it a JPA object?
-
-Solution: create a getter and create an addHobby to the Person class
+.Solution: create a getter and create an addHobby to the Person class
+[source, java]
+----
+ public void addHobby(Hobby h) {
+        this.hobbies.add(h);
+		h.getPeople().add(this);
+}
+----
 
 
 
@@ -245,9 +279,8 @@ Solution: create a getter and create an addHobby to the Person class
 ** Add Phone-entity and add the @OneToMany relationship
 ** Add Hobby-entity and add the @ManyToMany relationship
 * Watch what happens during the starting of the application with your database-structure
-The upcoming week (wednesday, friday ...) we will implmement this for the Liebregts case)
-
-== Follow up
-* During this week we must implement the lessons learned above in the Liebregts case
 
 
+== More Resources
+* https://www.thoughts-on-java.org/association-mappings-bag-list-set/
+* https://stackoverflow.com/questions/4935095/jpa-hibernate-many-to-many-cascading
