@@ -25,6 +25,11 @@ During this part of the training we will instruct using JPA
 
 Suppose an Employee always has a single address and we have to model it in jpa
 
+Then the following JAVA code (BLUE) will be created by you, the programmer, and Database (RED) will be created then
+automagically by JPA
+
+
+.Blue is Java Code, Red is Database
 image::ObjectRelational-OneToOne.jpg[]
 
 So we create the entity Addresss
@@ -85,6 +90,10 @@ public class Employee {
 
   // fails with the exception that JPA does not know what type of column to create for Address? Clear??
   private Address address;
+
+  public void setAddress(Address address) {
+		this.address = address;
+	}
 }
 ----
 
@@ -101,6 +110,10 @@ public class Employee {
 
   @OneToOne
   private Address address;
+
+ public void setAddress(Address address) {
+		this.address = address;
+	}
 }
 ----
 
@@ -154,6 +167,12 @@ We than use the *@OneToMany* annotation
 ----
 @OneToMany
 private Set<Phone> phones = new HashSet<>();
+
+
+public void addPhone(Phone phone) {
+	this.phones.add(phone);
+}
+
 ----
 
 JPA then creates a person_phones table? Why ?
@@ -169,17 +188,41 @@ Add the mappedBy property to the @OneToMany annotation on the owning side
 The mappedBy is ALWAYS the type of the Set we are dealing with. Hence in this case it is the Phone class - which has the @ManyToOne - annotation.
 Just pick the name of the variable and you are done ... for now :-)
 
+.In our _Person_ class (the owning side)
 [source, java]
-----
-@OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
-private Set<Phone> phones;
 ----
 
-.Add the @ManyToOne annotation to the belonging side
+public class Person {
+	
+	private String name;
+	...
+	...
+
+	@OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
+	private Set<Phone> phones = new HashSet<>();
+
+	public Set<Phone> getPhones() {
+		return this.phones;
+	}
+
+	public void addPhone(Phone phone) {
+		this.phones.add(phone);
+	}
+}
+----
+
+.In our _Phone_ class (the belonging side)
 [source, java]
 ----
-@ManyToOne
-private Person person;
+public class Phone {
+
+	private String phoneNumber;
+	...
+	...
+
+	@ManyToOne
+	private Person person;
+}
 ----
 
 == @ManyToMany
@@ -225,6 +268,12 @@ image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
 private Set<Hobby> hobbies = new HashSet<>();
+
+	 public void addHobby(Hobby h) {
+        this.hobbies.add(h);
+		h.getPeople().add(this);
+	}
+
 ----
 
 The machine creates a join table (in this case *hobbies_people*)
@@ -245,6 +294,12 @@ private Set<Hobby> hobbies = new HashSet<>();
 ----
 @ManyToMany(cascade=CascadeType.ALL)
 private Set<Person> people = new HashSet<>();
+
+public void addPerson(Person p) {
+	 	this.people.add(p);
+		p.getPhones().add(this);
+}
+
 ----
 
 TIP: Never use a mappedBy on both sides of the relationship. Simply only on the *owning* side
