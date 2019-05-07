@@ -297,7 +297,7 @@ private Set<Person> people = new HashSet<>();
 
 public void addPerson(Person p) {
 	 	this.people.add(p);
-		p.getPhones().add(this);
+		p.getHobbies().add(this);
 }
 
 ----
