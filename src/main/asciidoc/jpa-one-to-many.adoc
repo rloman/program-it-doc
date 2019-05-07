@@ -25,6 +25,11 @@ During this part of the training we will instruct using JPA
 
 Suppose an Employee always has a single address and we have to model it in jpa
 
+Then the following JAVA code (BLUE) will be created by you, the programmer, and Database (RED) will be created then
+automagically by JPA
+
+
+.Blue is Java Code, Red is Database
 image::ObjectRelational-OneToOne.jpg[]
 
 So we create the entity Addresss
@@ -85,6 +90,10 @@ public class Employee {
 
   // fails with the exception that JPA does not know what type of column to create for Address? Clear??
   private Address address;
+
+  public void setAddress(Address address) {
+		this.address = address;
+	}
 }
 ----
 
@@ -101,6 +110,10 @@ public class Employee {
 
   @OneToOne
   private Address address;
+
+ public void setAddress(Address address) {
+		this.address = address;
+	}
 }
 ----
 
@@ -153,7 +166,13 @@ We than use the *@OneToMany* annotation
 [source, java]
 ----
 @OneToMany
-private List<Phone> phones = new ArrayList<>();
+private Set<Phone> phones = new HashSet<>();
+
+
+public void addPhone(Phone phone) {
+	this.phones.add(phone);
+}
+
 ----
 
 JPA then creates a person_phones table? Why ?
@@ -166,23 +185,76 @@ Suppose we want to be able to get the person which own the phone
 
 Add the mappedBy property to the @OneToMany annotation on the owning side
 
-The mappedBy is ALWAYS the type of the List we are dealing with. Hence in this case it is the Phone class - which has the @ManyToOne - annotation.
+The mappedBy is ALWAYS the type of the Set we are dealing with. Hence in this case it is the Phone class - which has the @ManyToOne - annotation.
 Just pick the name of the variable and you are done ... for now :-)
 
+.In our _Person_ class (the owning side)
 [source, java]
-----
-@OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
-private List<Phone> phones;
 ----
 
-.Add the @ManyToOne annotation to the belonging side
+public class Person {
+	
+	private String name;
+	...
+	...
+
+	@OneToMany(mappedBy="person") // person is the private Person instance var in the phone class
+	private Set<Phone> phones = new HashSet<>();
+
+	public Set<Phone> getPhones() {
+		return this.phones;
+	}
+
+	public void addPhone(Phone phone) {
+		this.phones.add(phone);
+	}
+}
+----
+
+.In our _Phone_ class (the belonging side)
 [source, java]
 ----
-@ManyToOne
-private Person person;
+public class Phone {
+
+	private String phoneNumber;
+	...
+	...
+
+	@ManyToOne
+	private Person person;
+}
 ----
 
 == @ManyToMany
+
+=== Introducing jointable
+
+In a ManyToMany relationship we have a so-called many-to-many relationship between two classes.
+
+e.g. A Person can have many hobbies and a hobby can have many Person(s).
+
+JPA will create a so called join-table / link-table (Dutch: koppeltabel) to link the relationship between the two
+
+=== Introducing Cascading
+
+During this ManyToMany relationship part we also are talking about Cascading.
+In this case, cascading means ... what should we do when we delete a Person? Should we also delete his phones in the relationship?
+
+What you should know is that the @ManyToMany annotation has a 'cascade' attribute which you can set.
+
+.That cascade attribute should contain an 'CascadeType' enum value which are ...
+* ALL
+* PERSIST
+* MERGE
+* REMOVE
+* REFRESH
+* DETACH
+
+You are telling with this annotation what JPA should do on the action.
+So if we say ... cascade=CascadeType.REMOVE on the Person class on the Hobbies set than removing a Person will also remove the links from the linktable after deletion
+
+.More explaination regarding Cascading
+* https://stackoverflow.com/questions/4935095/jpa-hibernate-many-to-many-cascading
 
 === Unidirectional
 
@@ -195,7 +267,13 @@ image::GraphExplainingPersonHobbyMappingProgramItYed.jpg[]
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-private List<Hobby> hobbies = new ArrayList<>();
+private Set<Hobby> hobbies = new HashSet<>();
+
+	 public void addHobby(Hobby h) {
+        this.hobbies.add(h);
+		h.getPeople().add(this);
+	}
+
 ----
 
 The machine creates a join table (in this case *hobbies_people*)
@@ -208,34 +286,83 @@ Suppose want to see al people who like *running*
 [source, java]
 ----
 @ManyToMany(mappedBy="people", cascade=CascadeType.ALL)
-private List<Hobby> hobbies = new ArrayList<>();
+private Set<Hobby> hobbies = new HashSet<>();
 ----
 
 .Add the following to the Hobby class
 [source, java]
 ----
 @ManyToMany(cascade=CascadeType.ALL)
-private List<Person> people = new ArrayList<>();
+private Set<Person> people = new HashSet<>();
+
+public void addPerson(Person p) {
+	 	this.people.add(p);
+		p.getHobbies().add(this);
+}
+
 ----
 
 TIP: Never use a mappedBy on both sides of the relationship. Simply only on the *owning* side
 
-TIP: Be aware for the following. Using a getter to get the List of Hobbies out of person and than adding an item to the List will eventually fail.
+TIP: Be aware for the following. Using a getter to get the Set of Hobbies out of person and than adding an item to the Set will eventually fail.
 You have to add a hobby through the owning class (in this case through Person)
 
-Question: is the List when I am getting it a JPA object?
+.Solution: create a getter and create an addHobby to the Person class
+[source, java]
+----
+ public void addHobby(Hobby h) {
+        this.hobbies.add(h);
+		h.getPeople().add(this);
+}
+----
 
-Solution: create a getter and create an addHobby to the Person class
+== FAQ
 
-
-
-== What is that Cascade thing?
+=== What is that Cascade thing?
 
 * When a person is deleted what happens to the hobby?
 ** The Cascading defines what should happen to the underlying properties of an entity
 ** In fact we have to tell something about assocations and specially regarding aggregations and compositions
-* I think it is for later for now :-)
 
+
+== Issues you might run into
+
+=== Recursive rendering of ManyToMany relationships
+
+.Symptom
+* When creating REST controller and GETting a result ends in some very large text in Postman and in Spring Boot the console print some kind of recursion error (java.lang.StackoverflowError)
+
+.Cause
+* During rendering the machine renders a list with Persons and in each person a List of Hobbies which on it's turn have a List of Person which on it's turn have a list of hobbies ...
+** In fact you have a indirect recursion
+
+.Fix
+* Add @JsonIgnoreProperties("<some field>") above your field in your domain class which is the start of the problem (and it may be on both ends)
+
+.Example
+In our example using Person and Hobbies we have the problem when rendering the Hobbies
+
+[source, java, linenums, options="nowrap"]
+----
+public class Person {
+	private String name;
+
+	@ManyToMany(...)
+	@JsonIgnoreProperties("people"); // <= people is the TO BE IGNORED field in the HOBBY class
+	private Set<Hobbies> hobbies = new HashSet<>();
+}
+
+
+public class Hobby {
+	private String name;
+
+	@ManyToMany(...)
+	@JsonIgnoreProperties("hobbies");
+	private Set<Person>) people = new HashSet<>();
+}
+----
+
+TIP: If you have a lot of @JsonIgnoreProperties you can also add him to the class. The result is the union of all the mentioned properties
 
 == DIY
 .Do it yourself
@@ -245,9 +372,8 @@ Solution: create a getter and create an addHobby to the Person class
 ** Add Phone-entity and add the @OneToMany relationship
 ** Add Hobby-entity and add the @ManyToMany relationship
 * Watch what happens during the starting of the application with your database-structure
-The upcoming week (wednesday, friday ...) we will implmement this for the Liebregts case)
-
-== Follow up
-* During this week we must implement the lessons learned above in the Liebregts case
 
 
+== More Resources
+* https://www.thoughts-on-java.org/association-mappings-bag-list-set/
+* https://stackoverflow.com/questions/4935095/jpa-hibernate-many-to-many-cascading
