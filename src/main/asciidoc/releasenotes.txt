@@ -1,3 +1,18 @@
+== News Flash
+
+.07-05-2019
+* Released version v2.2.0
+
+== Release notes
+
+.v2.2.0 (07-05-2019)
+* Add link to release notes
+* Add the fix for fixing (in the project) when you run into the recursive rendering (jackson)
+* Fix for mistaking getPhones which should be getHobbies
+* Add some more explaination
+* Move from List/ArrayList to Set/HashSet since it is better according to literature
+
+
 v2.1.0
       Add some frontend stuff for the last couple of days in Eindhoven
 
