@@ -316,15 +316,53 @@ You have to add a hobby through the owning class (in this case through Person)
 }
 ----
 
+== FAQ
 
-
-== What is that Cascade thing?
+=== What is that Cascade thing?
 
 * When a person is deleted what happens to the hobby?
 ** The Cascading defines what should happen to the underlying properties of an entity
 ** In fact we have to tell something about assocations and specially regarding aggregations and compositions
-* I think it is for later for now :-)
 
+
+== Issues you might run into
+
+=== Recursive rendering of ManyToMany relationships
+
+.Symptom
+* When creating REST controller and GETting a result ends in some very large text in Postman and in Spring Boot the console print some kind of recursion error (java.lang.StackoverflowError)
+
+.Cause
+* During rendering the machine renders a list with Persons and in each person a List of Hobbies which on it's turn have a List of Person which on it's turn have a list of hobbies ...
+** In fact you have a indirect recursion
+
+.Fix
+* Add @JsonIgnoreProperties("<some field>") above your field in your domain class which is the start of the problem (and it may be on both ends)
+
+.Example
+In our example using Person and Hobbies we have the problem when rendering the Hobbies
+
+[source, java, linenums, options="nowrap"]
+----
+public class Person {
+	private String name;
+
+	@ManyToMany(...)
+	@JsonIgnoreProperties("people"); // <= people is the TO BE IGNORED field in the HOBBY class
+	private Set<Hobbies> hobbies = new HashSet<>();
+}
+
+
+public class Hobby {
+	private String name;
+
+	@ManyToMany(...)
+	@JsonIgnoreProperties("hobbies");
+	private Set<Person>) people = new HashSet<>();
+}
+----
+
+TIP: If you have a lot of @JsonIgnoreProperties you can also add him to the class. The result is the union of all the mentioned properties
 
 == DIY
 .Do it yourself
